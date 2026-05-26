@@ -29,9 +29,6 @@ public class MergeCell : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         }
     }
 
-    // =================================
-    // Обработка взаимодействия нажатия
-    // =================================
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -83,10 +80,6 @@ public class MergeCell : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         isEntered = false;
         MergeManager.instance.enteredCell = null;
     }
-
-    // ================
-    // Обработка MERGE
-    // ================
 
     private void MergeAction()
     {
