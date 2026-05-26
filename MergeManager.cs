@@ -134,11 +134,9 @@ public class MergeManager : MonoBehaviour
         {
             MergeCell cell = mergeCells[i];
 
-            // пропускаем пустые клетки
             if (cell.itemId == 0)
                 continue;
 
-            // если ракета слабее минимальной
             if (cell.itemId < minRocketLevel)
             {
                 cell.itemId = minRocketLevel;
