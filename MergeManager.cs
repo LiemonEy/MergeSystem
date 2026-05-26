@@ -84,65 +84,11 @@ public class MergeManager : MonoBehaviour
         }
     }
 
-    public bool GiftItem()
-    {
-        List<MergeCell> freeMergeCells = GetMergeCells();
-
-        if (freeMergeCells.Count > 0)
-        {
-            SpawnItem(freeMergeCells, maxRocketId / 3 + UnityEngine.Random.Range(1, 3));
-            SoundManager.instance.openGift.Play();
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public void BuyItem()
-    {
-        List<MergeCell> freeMergeCells = GetMergeCells();        
-
-        if (freeMergeCells.Count > 0 && UIManager.instance.IsPurchase())
-        {
-            SpawnItem(freeMergeCells, UIManager.instance.GetRocketLevel());
-
-            SoundManager.instance.buyRocket.Play();
-            rocketBuyedCount++;
-            UIManager.instance.CostRocketUpdate(rocketBuyedCount);
-        }
-        else if (freeMergeCells.Count == 0)
-        {
-            UIManager.instance.NoCellsAnimation();
-        }
-        else
-        {
-            UIManager.instance.NoMoneyAnimation();
-        }
-    }
-
     public void SpawnItem(List<MergeCell> freeMergeCells, int rocketId)
     {
         int index = UnityEngine.Random.Range(0, freeMergeCells.Count);
         freeMergeCells[index].itemId += rocketId;
         freeMergeCells[index].UpdateCell();
-    }
-
-    public void UpdateWeakRockets(int minRocketLevel)
-    {
-        for (int i = 0; i < mergeCells.Count; i++)
-        {
-            MergeCell cell = mergeCells[i];
-
-            if (cell.itemId == 0)
-                continue;
-
-            if (cell.itemId < minRocketLevel)
-            {
-                cell.itemId = minRocketLevel;
-                cell.UpdateCell();
-            }
-        }
     }
 
     public bool FreeCellsChecker()
